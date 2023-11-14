@@ -1,0 +1,1 @@
+ALTER TABLE "character" ALTER COLUMN "id" SET DATA TYPE integer;

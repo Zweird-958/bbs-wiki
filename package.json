@@ -9,6 +9,7 @@
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo clean",
     "postinstall": "pnpm lint:ws",
+    "db:generate": "pnpm -F db generate",
     "db:push": "pnpm -F db push",
     "db:studio": "pnpm -F db studio",
     "dev": "turbo dev --parallel",
@@ -22,9 +23,11 @@
   "devDependencies": {
     "@acme/prettier-config": "^0.1.0",
     "@turbo/gen": "^1.10.16",
-    "prettier": "^3.0.3",
+    "drizzle-kit": "^0.20.2",
+    "prettier": "^3.1.0",
     "turbo": "^1.10.16",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "wrangler": "^3.15.0"
   },
   "pnpm": {
     "overrides": {
@@ -37,5 +40,10 @@
     "apps/*",
     "packages/*",
     "tooling/*"
-  ]
+  ],
+  "dependencies": {
+    "@neondatabase/serverless": "^0.6.0",
+    "drizzle-orm": "^0.29.0",
+    "postgres": "^3.4.3"
+  }
 }

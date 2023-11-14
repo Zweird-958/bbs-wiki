@@ -1,0 +1,1 @@
+ALTER TABLE "character" ALTER COLUMN "variation" DROP NOT NULL;

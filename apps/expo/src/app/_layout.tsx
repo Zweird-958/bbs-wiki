@@ -1,10 +1,10 @@
-import React from "react";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import React from "react"
+import { Stack } from "expo-router"
+import { StatusBar } from "expo-status-bar"
 
-import { TRPCProvider } from "~/utils/api";
+import { TRPCProvider } from "@/utils/api"
 
-import "../styles.css";
+import "../styles.css"
 
 // This is the main layout of the app
 // It wraps your pages with the providers they need
@@ -24,7 +24,7 @@ const RootLayout = () => {
       />
       <StatusBar />
     </TRPCProvider>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

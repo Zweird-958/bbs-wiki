@@ -7,6 +7,10 @@ const config = {
   ],
   rules: {
     "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
+    "react/react-in-jsx-scope": "off",
   },
   globals: {
     React: "writable",
@@ -19,6 +23,6 @@ const config = {
   env: {
     browser: true,
   },
-};
+}
 
-module.exports = config;
+module.exports = config

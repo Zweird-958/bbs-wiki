@@ -1,0 +1,34 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1699544803766,
+      "tag": "0000_crazy_scrambler",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1699545325117,
+      "tag": "0001_salty_mad_thinker",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1699545415991,
+      "tag": "0002_glorious_smasher",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1699546149316,
+      "tag": "0003_burly_plazm",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+ALTER TABLE "t3turbo_character" RENAME TO "character";
