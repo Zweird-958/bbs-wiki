@@ -21,7 +21,7 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
-    "@acme/prettier-config": "^0.1.0",
+    "@bbs/prettier-config": "^0.1.0",
     "@turbo/gen": "^1.10.16",
     "drizzle-kit": "^0.20.2",
     "prettier": "^3.1.0",
@@ -34,7 +34,7 @@
       "@auth/core": "0.18.0"
     }
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@bbs/prettier-config",
   "packageManager": "npm@10.2.0",
   "workspaces": [
     "apps/*",

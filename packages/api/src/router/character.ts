@@ -1,4 +1,4 @@
-import { desc, isNotNull, schema } from "@acme/db"
+import { desc, isNotNull, schema } from "@bbs/db"
 
 import { createTRPCRouter, publicProcedure } from "../trpc"
 

@@ -5,7 +5,7 @@
 //     return ctx.session;
 //   }),
 //   getSecretMessage: protectedProcedure.query(() => {
-//     // testing type validation of overridden next-auth Session in @acme/auth package
+//     // testing type validation of overridden next-auth Session in @bbs/auth package
 //     return "you can see this secret message!";
 //   }),
 // });

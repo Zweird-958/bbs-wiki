@@ -1,5 +1,5 @@
 {
-  "name": "@acme/api",
+  "name": "@bbs/api",
   "version": "0.1.0",
   "private": true,
   "main": "./index.ts",
@@ -12,17 +12,17 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@acme/auth": "^0.1.0",
-    "@acme/db": "^0.1.0",
+    "@bbs/auth": "^0.1.0",
+    "@bbs/db": "^0.1.0",
     "@trpc/client": "next",
     "@trpc/server": "next",
     "superjson": "2.2.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@acme/eslint-config": "^0.2.0",
-    "@acme/prettier-config": "^0.1.0",
-    "@acme/tsconfig": "^0.1.0",
+    "@bbs/eslint-config": "^0.2.0",
+    "@bbs/prettier-config": "^0.1.0",
+    "@bbs/tsconfig": "^0.1.0",
     "eslint": "^8.53.0",
     "prettier": "^3.1.0",
     "typescript": "^5.2.2"
@@ -30,8 +30,8 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@acme/eslint-config/base"
+      "@bbs/eslint-config/base"
     ]
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@bbs/prettier-config"
 }
