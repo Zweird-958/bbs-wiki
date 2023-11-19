@@ -1,6 +1,7 @@
-import { integer, text, timestamp } from "drizzle-orm/pg-core"
+import { sql } from "drizzle-orm"
+import { integer, text, timestamp, uuid } from "drizzle-orm/pg-core"
 
-import { pgTable } from "./_table"
+import { dictionarySchema, pgTable } from "./_table"
 
 export const character = pgTable("character", {
   id: integer("id").primaryKey(),
@@ -70,7 +71,9 @@ export const character = pgTable("character", {
   exIntroductionName: text("ex_introduction_name"),
   exIntroductionDescription: text("ex_introduction_description"),
   bookOrder: integer("book_order"),
-  startDate: timestamp("start_date"),
+  startDate: timestamp("start_date").default(
+    sql`TO_TIMESTAMP('2015-10-14','YYYY-MM-DD')`,
+  ),
   standAnimationState: text("stand_animation_state"),
   questStartVoiceEvent: text("quest_start_voice_event"),
   standFace: integer("stand_face"),
@@ -84,4 +87,11 @@ export const character = pgTable("character", {
   potentialPoint: integer("potential_point"),
   boostGaugeTrigger: text("boost_gauge_trigger"),
   mBoostGaugeAbilityGroupId: integer("m_boost_gauge_ability_group_id"),
+})
+
+export const characterFullName = dictionarySchema("character_full_name")
+export const characterVariation = dictionarySchema("character_variation")
+export const characterUnique = pgTable("character_unique", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  characterIds: integer("character_ids").array().unique().notNull(),
 })

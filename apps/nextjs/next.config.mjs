@@ -1,6 +1,6 @@
 // Importing env files here to validate on build
-import "./src/env.mjs";
-import "@bbs/auth/env.mjs";
+import "@bbs/auth/env.mjs"
+import "./src/env.mjs"
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -10,6 +10,9 @@ const config = {
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
-};
+  images: {
+    domains: ["pub-83004e88915545ceb68d3a6f2b42ccc5.r2.dev"],
+  },
+}
 
-export default config;
+export default config

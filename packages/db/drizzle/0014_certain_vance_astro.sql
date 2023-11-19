@@ -1,0 +1,1 @@
+ALTER TABLE "character" ALTER COLUMN "start_date" SET DEFAULT 2010-01-31;

@@ -1,0 +1,1 @@
+ALTER TABLE "character_unique" ALTER COLUMN "id" SET DEFAULT gen_random_uuid();

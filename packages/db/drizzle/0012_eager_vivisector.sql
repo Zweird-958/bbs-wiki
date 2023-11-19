@@ -1,0 +1,1 @@
+ALTER TABLE "character_unique" ADD CONSTRAINT "character_unique_character_ids_unique" UNIQUE("character_ids");

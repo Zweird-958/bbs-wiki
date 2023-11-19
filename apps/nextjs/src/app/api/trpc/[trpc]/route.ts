@@ -29,7 +29,7 @@ const handler = async (req: Request) => {
     endpoint: "/api/trpc",
     router: appRouter,
     req,
-    createContext: () => createTRPCContext({ req }),
+    createContext: () => createTRPCContext(),
     onError({ error, path }) {
       // eslint-disable-next-line no-console
       console.error(`>>> tRPC Error on '${path}'`, error)
