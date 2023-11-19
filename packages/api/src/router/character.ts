@@ -27,6 +27,7 @@ export const characterRouter = createTRPCRouter({
 
       const characters = await ctx.db
         .select({
+          id: character.id,
           resource2dId: character.resource2dId,
           characterElement: character.characterElement,
           variation: characterVariation.contentFr,
@@ -43,13 +44,16 @@ export const characterRouter = createTRPCRouter({
           eq(character.variation, characterVariation.dictKey),
         )
         .where(inArray(character.id, characterIds))
-        .orderBy(desc(character.startDate))
+        .orderBy(desc(character.startDate), desc(character.id))
         .offset((page - 1) * config.pageLimit)
         .limit(config.pageLimit)
 
       const charactersFormatted = characters.map(
-        ({ resource2dId, ...character }) => ({
+        ({ resource2dId, id, ...character }) => ({
           thumb: `${env.IMAGES_URL}/${resource2dId}/thumb.pb`,
+          id: charactersUnique.find(({ characterIds }) =>
+            characterIds.includes(id),
+          )?.id,
           ...character,
         }),
       )
