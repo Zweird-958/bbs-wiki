@@ -4,6 +4,7 @@
   "engines": {
     "node": ">=18.18.2"
   },
+  "packageManager": "pnpm@8.10.5",
   "scripts": {
     "build": "turbo build",
     "clean": "git clean -xdf node_modules",
@@ -12,6 +13,8 @@
     "db:generate": "pnpm -F db generate",
     "db:push": "pnpm -F db push",
     "db:studio": "pnpm -F db studio",
+    "web": "pnpm -F nextjs run dev",
+    "mobile": "pnpm -F expo run dev",
     "dev": "turbo dev --parallel",
     "format": "turbo format --continue -- --cache --cache-location='node_modules/.cache/.prettiercache'",
     "format:fix": "turbo format --continue -- --write --cache --cache-location='node_modules/.cache/.prettiercache'",
@@ -21,7 +24,7 @@
     "typecheck": "turbo typecheck"
   },
   "devDependencies": {
-    "@bbs/prettier-config": "^0.1.0",
+    "@bbs/prettier-config": "workspace:^0.1.0",
     "@turbo/gen": "^1.10.16",
     "drizzle-kit": "^0.20.2",
     "prettier": "^3.1.0",
@@ -35,12 +38,6 @@
     }
   },
   "prettier": "@bbs/prettier-config",
-  "packageManager": "npm@10.2.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*",
-    "tooling/*"
-  ],
   "dependencies": {
     "@neondatabase/serverless": "^0.6.0",
     "drizzle-orm": "^0.29.0",
