@@ -37,10 +37,5 @@
       "@auth/core": "0.18.0"
     }
   },
-  "prettier": "@bbs/prettier-config",
-  "dependencies": {
-    "@neondatabase/serverless": "^0.6.0",
-    "drizzle-orm": "^0.29.0",
-    "postgres": "^3.4.3"
-  }
+  "prettier": "@bbs/prettier-config"
 }
