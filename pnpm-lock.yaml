@@ -183,9 +183,15 @@ importers:
       framer-motion:
         specifier: ^10.16.5
         version: 10.16.5(react-dom@18.2.0)(react@18.2.0)
+      lucide-react:
+        specifier: ^0.292.0
+        version: 0.292.0(react@18.2.0)
       next:
         specifier: ^14.0.2
         version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
+      next-themes:
+        specifier: ^0.2.1
+        version: 0.2.1(next@14.0.2)(react-dom@18.2.0)(react@18.2.0)
       next-usequerystate:
         specifier: ^1.12.2
         version: 1.12.2(next@14.0.2)
@@ -338,7 +344,7 @@ importers:
         version: 1.11.0
       drizzle-orm:
         specifier: ^0.29.0
-        version: 0.29.0(@neondatabase/serverless@0.6.0)(@planetscale/database@1.11.0)(postgres@3.4.3)
+        version: 0.29.0(@neondatabase/serverless@0.6.0)(@planetscale/database@1.11.0)
     devDependencies:
       '@bbs/eslint-config':
         specifier: ^0.2.0
@@ -7693,7 +7699,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /drizzle-orm@0.29.0(@neondatabase/serverless@0.6.0)(@planetscale/database@1.11.0)(postgres@3.4.3):
+  /drizzle-orm@0.29.0(@neondatabase/serverless@0.6.0)(@planetscale/database@1.11.0):
     resolution: {integrity: sha512-AC+CuW4GezVjsZDGU9u9B4HyikudOyYVhjm6he3Xn1D6Kky7bHGKob97MMX2piO+t9b6UuajLzlii/T/lu1qwA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -7757,7 +7763,6 @@ packages:
     dependencies:
       '@neondatabase/serverless': 0.6.0
       '@planetscale/database': 1.11.0
-      postgres: 3.4.3
     dev: false
 
   /ee-first@1.1.1:
@@ -10312,6 +10317,14 @@ packages:
       es5-ext: 0.10.62
     dev: true
 
+  /lucide-react@0.292.0(react@18.2.0):
+    resolution: {integrity: sha512-rRgUkpEHWpa5VCT66YscInCQmQuPCB1RFRzkkxMxg4b+jaL0V12E3riWWR2Sh5OIiUhCwGW/ZExuEO4Az32E6Q==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -10963,6 +10976,18 @@ packages:
       '@auth/core': 0.18.0
       next: 14.0.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
+    dev: false
+
+  /next-themes@0.2.1(next@14.0.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 14.0.2(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /next-tick@1.1.0:
@@ -11643,11 +11668,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       xtend: 4.0.2
-    dev: false
-
-  /postgres@3.4.3:
-    resolution: {integrity: sha512-iHJn4+M9vbTdHSdDzNkC0crHq+1CUdFhx+YqCE+SqWxPjm+Zu63jq7yZborOBF64c8pc58O5uMudyL1FQcHacA==}
-    engines: {node: '>=12'}
     dev: false
 
   /preact-render-to-string@5.2.3(preact@10.11.3):

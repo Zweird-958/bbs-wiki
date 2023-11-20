@@ -4,6 +4,7 @@ import "@/styles/globals.css"
 
 import { headers } from "next/headers"
 
+import AppBar from "@/components/appbar/AppBar"
 import { TRPCReactProvider } from "./providers"
 
 /**
@@ -23,6 +24,7 @@ export default function Layout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body className="bg-background">
         <TRPCReactProvider headers={headers()}>
+          <AppBar />
           {props.children}
         </TRPCReactProvider>
       </body>

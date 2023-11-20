@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental"
 import { loggerLink, unstable_httpBatchStreamLink } from "@trpc/client"
+import { ThemeProvider } from "next-themes"
 import superjson from "superjson"
 
 import { env } from "@/env.mjs"
@@ -64,7 +65,9 @@ export function TRPCReactProvider(props: {
     <api.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
         <ReactQueryStreamedHydration transformer={superjson}>
-          <NextUIProvider>{props.children}</NextUIProvider>
+          <NextUIProvider>
+            <ThemeProvider>{props.children}</ThemeProvider>
+          </NextUIProvider>
         </ReactQueryStreamedHydration>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

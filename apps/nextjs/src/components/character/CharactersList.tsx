@@ -2,12 +2,12 @@
 
 import { useCallback } from "react"
 import { Pagination, Spinner } from "@nextui-org/react"
-import CharacterCard from "~/components/CharacterCard"
 import { parseAsInteger, useQueryState } from "next-usequerystate"
 
+import CharacterCard from "@/components/character/CharacterCard"
 import { api } from "@/utils/api"
 
-const Characters = () => {
+const CharactersList = () => {
   const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1))
 
   const { isLoading, data: { characters = [], numberOfPages } = {} } =
@@ -60,4 +60,4 @@ const Characters = () => {
   )
 }
 
-export default Characters
+export default CharactersList
