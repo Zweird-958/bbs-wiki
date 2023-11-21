@@ -1,9 +1,15 @@
+import getServerLanguage from "@/utils/getServerLanguage"
+import getTranslations from "@/utils/language/getTranslations"
+
 export const runtime = "edge"
 
-const HomePage = () => {
+const HomePage = async () => {
+  const language = getServerLanguage()
+  const { common } = await getTranslations(language)
+
   return (
     <div>
-      <p>Home Page</p>
+      <p className="text-center">{common.homePage}</p>
     </div>
   )
 }

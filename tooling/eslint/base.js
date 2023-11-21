@@ -26,6 +26,7 @@ const config = {
       "warn",
       { prefer: "type-imports", fixStyle: "separate-type-imports" },
     ],
+    "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-misused-promises": [
       2,
       { checksVoidReturn: { attributes: false } },

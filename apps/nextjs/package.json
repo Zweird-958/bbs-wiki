@@ -25,15 +25,18 @@
     "@trpc/next": "next",
     "@trpc/react-query": "next",
     "@trpc/server": "next",
+    "accept-language": "^3.0.18",
+    "cookies-next": "^4.1.0",
     "framer-motion": "^10.16.5",
+    "lucide-react": "^0.292.0",
     "next": "^14.0.3",
     "next-themes": "^0.2.1",
-    "lucide-react": "^0.292.0",
     "next-usequerystate": "^1.12.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "2.2.1",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@bbs/eslint-config": "^0.2.0",

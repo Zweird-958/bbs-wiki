@@ -13,11 +13,17 @@ import {
 import { MoonIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 
+import { useLanguage } from "@/hooks/useLanguage"
+
 const ThemeDropdown = () => {
   const { theme, setTheme } = useTheme()
   const [themeSelected, setThemeSelected] = useState(
     new Set([theme ?? "system"]),
   )
+
+  const {
+    translations: { common },
+  } = useLanguage()
 
   const handleChangeTheme = useCallback(
     (themeKey: Key) => {
@@ -44,9 +50,9 @@ const ThemeDropdown = () => {
         selectedKeys={themeSelected}
         selectionMode="single"
       >
-        <DropdownItem key="system">System</DropdownItem>
-        <DropdownItem key="light">Light</DropdownItem>
-        <DropdownItem key="dark">Dark</DropdownItem>
+        <DropdownItem key="system">{common.system}</DropdownItem>
+        <DropdownItem key="light">{common.light}</DropdownItem>
+        <DropdownItem key="dark">{common.dark}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   )

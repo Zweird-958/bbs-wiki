@@ -19,13 +19,19 @@ export const metadata: Metadata = {
   description: "Wiki for BBS",
 }
 
-export default function Layout(props: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode
+}
+
+export default function Layout(props: Props) {
+  const { children } = props
+
   return (
     <html lang="en">
       <body className="bg-background">
         <TRPCReactProvider headers={headers()}>
           <AppBar />
-          {props.children}
+          {children}
         </TRPCReactProvider>
       </body>
     </html>
