@@ -21,6 +21,7 @@ export const env = createEnv({
    * For them to be exposed to the client, prefix them with `NEXT_PUBLIC_`.
    */
   client: {
+    NEXT_PUBLIC_IMAGES_DOMAIN: z.string(),
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
   },
   /**
@@ -30,6 +31,7 @@ export const env = createEnv({
     VERCEL_URL: process.env.VERCEL_URL,
     PORT: process.env.PORT,
     DATABASE_URL: process.env.DATABASE_URL,
+    NEXT_PUBLIC_IMAGES_DOMAIN: process.env.NEXT_PUBLIC_IMAGES_DOMAIN,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   skipValidation:

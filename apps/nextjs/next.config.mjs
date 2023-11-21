@@ -1,6 +1,6 @@
 // Importing env files here to validate on build
 import "@bbs/auth/env.mjs"
-import "./src/env.mjs"
+import { env } from "./src/env.mjs"
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -11,7 +11,7 @@ const config = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   images: {
-    domains: ["pub-83004e88915545ceb68d3a6f2b42ccc5.r2.dev"],
+    domains: [env.NEXT_PUBLIC_IMAGES_DOMAIN],
   },
 }
 
