@@ -300,8 +300,8 @@ importers:
         specifier: 0.18.0
         version: 0.18.0
       '@auth/drizzle-adapter':
-        specifier: ^0.3.7
-        version: 0.3.7
+        specifier: ^0.3.8
+        version: 0.3.8
       '@bbs/db':
         specifier: ^0.1.0
         version: link:../db
@@ -510,8 +510,8 @@ packages:
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
 
-  /@auth/drizzle-adapter@0.3.7:
-    resolution: {integrity: sha512-PUHDjkQz9/DZai1masvYWSFtVtMsFFGogeqPf9/vWcunFve6tNR/Zs8aOBeIWjLmgt+XGZpYF7SgNVYWzUQlag==}
+  /@auth/drizzle-adapter@0.3.8:
+    resolution: {integrity: sha512-7x+XlUM9u3pphAinWUjsHTSS5EPBvH6bqhogPMFhD1JNIViFeJ/+dgHWBO2Ft0IY3Le1Fkpgo3pKlYEC4z7AZA==}
     dependencies:
       '@auth/core': 0.18.0
     transitivePeerDependencies:
