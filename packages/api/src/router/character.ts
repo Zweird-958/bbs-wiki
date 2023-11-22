@@ -1,11 +1,7 @@
 import { z } from "zod"
 
-import { desc, eq, inArray } from "@bbs/db"
-import {
-  character,
-  characterFullName,
-  characterVariation,
-} from "@bbs/db/schema/character"
+import { desc, inArray } from "@bbs/db"
+import { character } from "@bbs/db/schema/character"
 
 import config from "../../config"
 import { env } from "../../env.mjs"
@@ -25,37 +21,48 @@ export const characterRouter = createTRPCRouter({
         ({ characterIds }) => characterIds[0]!,
       )
 
-      const characters = await ctx.db
-        .select({
-          id: character.id,
-          resource2dId: character.resource2dId,
-          characterElement: character.characterElement,
-          variation: characterVariation.contentFr,
-          name: characterFullName.contentFr,
-          startDate: character.startDate,
-        })
-        .from(character)
-        .innerJoin(
-          characterFullName,
-          eq(character.fullName, characterFullName.dictKey),
-        )
-        .leftJoin(
-          characterVariation,
-          eq(character.variation, characterVariation.dictKey),
-        )
-        .where(inArray(character.id, characterIds))
-        .orderBy(desc(character.startDate), desc(character.id))
-        .offset((page - 1) * config.pageLimit)
-        .limit(config.pageLimit)
+      const characters = await ctx.db.query.character.findMany({
+        columns: {
+          id: true,
+          resource2dId: true,
+          characterElement: true,
+        },
+        with: {
+          fullName: {
+            columns: {
+              dictKey: false,
+            },
+          },
+          variation: {
+            columns: {
+              dictKey: false,
+            },
+          },
+        },
+        where: inArray(character.id, characterIds),
+        orderBy: [desc(character.startDate), desc(character.id)],
+        offset: (page - 1) * config.pageLimit,
+        limit: config.pageLimit,
+      })
 
       const charactersFormatted = characters.map(
-        ({ resource2dId, id, ...character }) => ({
-          thumb: `${env.IMAGES_URL}/${resource2dId}/thumb.pb`,
-          id: charactersUnique.find(({ characterIds }) =>
+        ({ resource2dId, id, fullName, variation, ...character }) => {
+          const uniqueCharacter = charactersUnique.find(({ characterIds }) =>
             characterIds.includes(id),
-          )?.id,
-          ...character,
-        }),
+          )
+
+          if (!uniqueCharacter) {
+            throw new Error("Character not found")
+          }
+
+          return {
+            thumb: `${env.IMAGES_URL}/${resource2dId}/thumb.pb`,
+            id: uniqueCharacter.id,
+            name: fullName.contentFr,
+            variation: variation?.contentFr,
+            ...character,
+          }
+        },
       )
 
       const count = charactersUnique.length

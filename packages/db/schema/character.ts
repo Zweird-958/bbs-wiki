@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm"
+import { relations, sql } from "drizzle-orm"
 import { integer, text, timestamp, uuid } from "drizzle-orm/pg-core"
 
 import { dictionarySchema, pgTable } from "./_table"
@@ -89,8 +89,27 @@ export const character = pgTable("character", {
   mBoostGaugeAbilityGroupId: integer("m_boost_gauge_ability_group_id"),
 })
 
-export const characterFullName = dictionarySchema("character_full_name")
-export const characterVariation = dictionarySchema("character_variation")
+export const characterRelations = relations(character, ({ one }) => ({
+  fullName: one(characterFullName, {
+    fields: [character.fullName],
+    references: [characterFullName.dictKey],
+  }),
+  variation: one(characterVariation, {
+    fields: [character.variation],
+    references: [characterVariation.dictKey],
+  }),
+}))
+
+export const characterFullName = pgTable(
+  "character_full_name",
+  dictionarySchema,
+)
+
+export const characterVariation = pgTable(
+  "character_variation",
+  dictionarySchema,
+)
+
 export const characterUnique = pgTable("character_unique", {
   id: uuid("id").primaryKey().defaultRandom(),
   characterIds: integer("character_ids").array().unique().notNull(),
