@@ -33,13 +33,8 @@ const CharactersList = () => {
   return (
     <div className="max-w-4xl">
       <div className="flex flex-wrap justify-center gap-5 px-2">
-        {characters.map(({ name, variation, thumb }, index) => (
-          <CharacterCard
-            key={index}
-            name={name}
-            variation={variation}
-            image={thumb}
-          />
+        {characters.map((character) => (
+          <CharacterCard key={character.id} character={character} />
         ))}
       </div>
       {numberOfPages && (

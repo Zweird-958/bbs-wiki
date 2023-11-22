@@ -113,4 +113,13 @@ export const characterVariation = pgTable(
 export const characterUnique = pgTable("character_unique", {
   id: uuid("id").primaryKey().defaultRandom(),
   characterIds: integer("character_ids").array().unique().notNull(),
+  rarities: integer("rarities").array().notNull(),
+  raritiesResurrect: integer("rarities_resurrect").array(),
 })
+
+export const characterUniqueRelations = relations(
+  characterUnique,
+  ({ many }) => ({
+    character: many(character),
+  }),
+)

@@ -1,5 +1,6 @@
 // Importing env files here to validate on build
 import "@bbs/auth/env.mjs"
+
 import { env } from "./src/env.mjs"
 
 /** @type {import("next").NextConfig} */

@@ -60,6 +60,8 @@ export const characterRouter = createTRPCRouter({
             id: uniqueCharacter.id,
             name: fullName.contentFr,
             variation: variation?.contentFr,
+            rarities: uniqueCharacter.rarities,
+            raritiesResurrect: uniqueCharacter.raritiesResurrect,
             ...character,
           }
         },
