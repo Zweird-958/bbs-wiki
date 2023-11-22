@@ -12,7 +12,9 @@ const config = {
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
   images: {
-    domains: [env.NEXT_PUBLIC_IMAGES_DOMAIN],
+    domains: [
+      process.env.SKIP_ENV_VALIDATION ? "" : env.NEXT_PUBLIC_IMAGES_DOMAIN,
+    ],
   },
 }
 
