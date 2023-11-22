@@ -9,7 +9,7 @@ export const character = pgTable("character", {
   fullName: text("full_name").notNull(),
   namePhonetic: text("name_phonetic").notNull(),
   variation: text("variation"),
-  charaIdentityOd: text("chara_identity_id").notNull(),
+  charaIdentityId: text("chara_identity_id").notNull(),
   resource2dId: text("resource_2d_id").notNull(),
   resource3dId: text("resource_3d_id").notNull(),
   disableCharaImageDropShadow: integer(
