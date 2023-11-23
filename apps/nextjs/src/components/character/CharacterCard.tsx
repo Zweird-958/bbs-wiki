@@ -1,5 +1,7 @@
 import { Card, CardBody, Image } from "@nextui-org/react"
 
+import { useLanguage } from "@/hooks/useLanguage"
+
 type Props = {
   character: Character
 }
@@ -18,6 +20,13 @@ const CharacterCard = (props: Props) => {
   const {
     character: { id, name, thumb, variation, rarities, raritiesResurrect },
   } = props
+  const {
+    translations: {
+      common: { rarity },
+    },
+  } = useLanguage()
+  const isManyRarities =
+    rarities.length + (raritiesResurrect ? rarities.length : 0) > 1
 
   return (
     <Card className="bg-content2 w-96 rounded-lg" shadow="sm">
@@ -37,7 +46,8 @@ const CharacterCard = (props: Props) => {
               <h3 className="text-foreground/90 font-semibold">{name}</h3>
               <p className="text-foreground/80 text-sm">{variation}</p>
               <p className="text-foreground/80 text-sm">
-                Rarities: {rarities.join(", ")}
+                {isManyRarities ? rarity.many : rarity.single}
+                {rarities.join(", ")}
                 {raritiesResurrect && `, ${raritiesResurrect.join(", ")}`}
               </p>
             </div>

@@ -3,5 +3,9 @@
   "characters": "Personnages",
   "system": "Système",
   "dark": "Sombre",
-  "light": "Clair"
+  "light": "Clair",
+  "rarity": {
+    "single": "Rareté : ",
+    "many": "Raretés : "
+  }
 }
