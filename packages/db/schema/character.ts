@@ -71,9 +71,9 @@ export const character = pgTable("character", {
   exIntroductionName: text("ex_introduction_name"),
   exIntroductionDescription: text("ex_introduction_description"),
   bookOrder: integer("book_order"),
-  startDate: timestamp("start_date").default(
-    sql`TO_TIMESTAMP('2015-10-14','YYYY-MM-DD')`,
-  ),
+  startDate: timestamp("start_date")
+    .default(sql`to_timestamp('2015-01-01', 'YYYY-MM-DD')`)
+    .notNull(),
   standAnimationState: text("stand_animation_state"),
   questStartVoiceEvent: text("quest_start_voice_event"),
   standFace: integer("stand_face"),
