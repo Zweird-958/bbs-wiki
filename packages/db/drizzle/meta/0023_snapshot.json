@@ -536,9 +536,7 @@
         "character_unique_character_ids_unique": {
           "name": "character_unique_character_ids_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "character_ids"
-          ]
+          "columns": ["character_ids"]
         }
       }
     },
