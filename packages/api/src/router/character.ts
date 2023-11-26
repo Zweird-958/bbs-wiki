@@ -56,7 +56,7 @@ export const characterRouter = createTRPCRouter({
           }
 
           return {
-            thumb: `${env.IMAGES_URL}/${resource2dId}/thumb.pb`,
+            thumb: `${env.IMAGES_URL}/characters/${resource2dId}/thumb.pb`,
             id: uniqueCharacter.id,
             name: fullName.contentFr,
             variation: variation?.contentFr,
