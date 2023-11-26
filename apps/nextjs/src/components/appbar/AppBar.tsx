@@ -14,14 +14,14 @@ import getServerLanguage from "@/utils/getServerLanguage"
 import getTranslations from "@/utils/language/getTranslations"
 
 const AppBar = async () => {
+  const language = getServerLanguage()
+  const { common } = await getTranslations(language)
   const menuItems = [
     {
-      label: "Characters",
+      label: common.characters,
       href: "/characters",
     },
   ]
-  const language = getServerLanguage()
-  const { common } = await getTranslations(language)
 
   return (
     <Navbar maxWidth="lg">
