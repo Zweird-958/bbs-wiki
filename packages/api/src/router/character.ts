@@ -6,22 +6,24 @@ import { character } from "@bbs/db/schema/character"
 import config from "../../config"
 import { env } from "../../env.mjs"
 import { createTRPCRouter, publicProcedure } from "../trpc"
+import { pageLimitValidator, pageValidator } from "../validators"
 
 export const characterRouter = createTRPCRouter({
   all: publicProcedure
     .input(
       z.object({
-        page: z.number().default(1),
+        page: pageValidator,
+        pageLimit: pageLimitValidator,
       }),
     )
-    .query(async ({ ctx, input }) => {
-      const { page } = input
-      const charactersUnique = await ctx.db.query.characterUnique.findMany()
+    .query(async ({ ctx: { db }, input }) => {
+      const { page, pageLimit } = input
+      const charactersUnique = await db.query.characterUnique.findMany()
       const characterIds = charactersUnique.map(
         ({ characterIds }) => characterIds[0]!,
       )
 
-      const characters = await ctx.db.query.character.findMany({
+      const characters = await db.query.character.findMany({
         columns: {
           id: true,
           resource2dId: true,
@@ -41,8 +43,8 @@ export const characterRouter = createTRPCRouter({
         },
         where: inArray(character.id, characterIds),
         orderBy: [desc(character.startDate), desc(character.id)],
-        offset: (page - 1) * config.pageLimit,
-        limit: config.pageLimit,
+        offset: (page - 1) * pageLimit,
+        limit: pageLimit,
       })
 
       const charactersFormatted = characters.map(
