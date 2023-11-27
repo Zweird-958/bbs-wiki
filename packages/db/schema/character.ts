@@ -116,10 +116,3 @@ export const characterUnique = pgTable("character_unique", {
   rarities: integer("rarities").array().notNull(),
   raritiesResurrect: integer("rarities_resurrect").array(),
 })
-
-export const characterUniqueRelations = relations(
-  characterUnique,
-  ({ many }) => ({
-    character: many(character),
-  }),
-)
