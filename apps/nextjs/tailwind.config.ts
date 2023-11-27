@@ -12,8 +12,10 @@ export default {
   darkMode: "class",
   plugins: [nextui()],
   theme: {
-    screens: {
-      xs: "520px",
+    extend: {
+      screens: {
+        xs: "520px",
+      },
     },
   },
 } satisfies Config
