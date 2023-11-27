@@ -29,7 +29,7 @@ const CharacterCard = (props: Props) => {
     rarities.length + (raritiesResurrect ? rarities.length : 0) > 1
 
   return (
-    <Card className="bg-content2 w-96 rounded-lg" shadow="sm">
+    <Card className="bg-content2 xs:w-96 w-full rounded-lg" shadow="sm">
       <CardBody className="flex flex-row items-center gap-6 px-4 py-2">
         <div className="h-32 basis-32 ">
           <Image

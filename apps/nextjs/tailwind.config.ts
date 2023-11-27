@@ -11,4 +11,9 @@ export default {
   presets: [baseConfig],
   darkMode: "class",
   plugins: [nextui()],
+  theme: {
+    screens: {
+      xs: "520px",
+    },
+  },
 } satisfies Config
