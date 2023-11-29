@@ -18,7 +18,7 @@
   "dependencies": {
     "@neondatabase/serverless": "^0.6.0",
     "@planetscale/database": "^1.11.0",
-    "drizzle-orm": "^0.29.0"
+    "drizzle-orm": "^0.29.1"
   },
   "devDependencies": {
     "@bbs/eslint-config": "^0.2.0",
