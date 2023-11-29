@@ -1,0 +1,11 @@
+{
+  "homePage": "Page d'accueil",
+  "characters": "Personnages",
+  "system": "Système",
+  "dark": "Sombre",
+  "light": "Clair",
+  "rarity": {
+    "single": "Rareté : ",
+    "many": "Raretés : "
+  }
+}

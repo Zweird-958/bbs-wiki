@@ -1,0 +1,611 @@
+{
+  "id": "dafd45d0-46ea-4aea-be93-08f2db50a0f5",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "character": {
+      "name": "character",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "full_name": {
+          "name": "full_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name_phonetic": {
+          "name": "name_phonetic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "variation": {
+          "name": "variation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "chara_identity_id": {
+          "name": "chara_identity_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "resource_2d_id": {
+          "name": "resource_2d_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "resource_3d_id": {
+          "name": "resource_3d_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "disable_chara_image_drop_shadow": {
+          "name": "disable_chara_image_drop_shadow",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rarity": {
+          "name": "rarity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "character_category": {
+          "name": "character_category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "character_element": {
+          "name": "character_element",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_resurrect": {
+          "name": "is_resurrect",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "init_hp": {
+          "name": "init_hp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "init_sp": {
+          "name": "init_sp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "init_atk": {
+          "name": "init_atk",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "init_def": {
+          "name": "init_def",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "init_crt": {
+          "name": "init_crt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_max_hp": {
+          "name": "first_max_hp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_max_sp": {
+          "name": "first_max_sp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_max_atk": {
+          "name": "first_max_atk",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_max_def": {
+          "name": "first_max_def",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "first_max_crt": {
+          "name": "first_max_crt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "second_max_hp": {
+          "name": "second_max_hp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "second_max_sp": {
+          "name": "second_max_sp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "second_max_atk": {
+          "name": "second_max_atk",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "second_max_def": {
+          "name": "second_max_def",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "second_max_crt": {
+          "name": "second_max_crt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "third_max_hp": {
+          "name": "third_max_hp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "third_max_sp": {
+          "name": "third_max_sp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "third_max_atk": {
+          "name": "third_max_atk",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "third_max_def": {
+          "name": "third_max_def",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "third_max_crt": {
+          "name": "third_max_crt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "dash_type": {
+          "name": "dash_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "speed": {
+          "name": "speed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "character_attack_group_id_normal": {
+          "name": "character_attack_group_id_normal",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "character_attack_group_id_heavy1": {
+          "name": "character_attack_group_id_heavy1",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "character_attack_group_id_heavy2": {
+          "name": "character_attack_group_id_heavy2",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "character_attack_group_id_heavy3": {
+          "name": "character_attack_group_id_heavy3",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "character_attack_group_id_ex": {
+          "name": "character_attack_group_id_ex",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ex_atk_resource_3d_id": {
+          "name": "ex_atk_resource_3d_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ex_cutin_resource_3d_id": {
+          "name": "ex_cutin_resource_3d_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "character_shift_id": {
+          "name": "character_shift_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "character_buddy_id": {
+          "name": "character_buddy_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "killer_type1": {
+          "name": "killer_type1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "killer_type2": {
+          "name": "killer_type2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "max_ex_gauge": {
+          "name": "max_ex_gauge",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "m_soul_piece_pattern_id": {
+          "name": "m_soul_piece_pattern_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "m_potential_material_pattern_id": {
+          "name": "m_potential_material_pattern_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "m_passive_ability_group_id": {
+          "name": "m_passive_ability_group_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "m_arena_skill_group_id": {
+          "name": "m_arena_skill_group_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "m_arena_ability_group_id": {
+          "name": "m_arena_ability_group_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "profile": {
+          "name": "profile",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "short_profile": {
+          "name": "short_profile",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ex_introduction_name": {
+          "name": "ex_introduction_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ex_introduction_description": {
+          "name": "ex_introduction_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "book_order": {
+          "name": "book_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "start_date": {
+          "name": "start_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "to_timestamp('2015-01-01', 'YYYY-MM-DD')"
+        },
+        "stand_animation_state": {
+          "name": "stand_animation_state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "quest_start_voice_event": {
+          "name": "quest_start_voice_event",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stand_face": {
+          "name": "stand_face",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_scale": {
+          "name": "image_scale",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "gacha_message_bank_event": {
+          "name": "gacha_message_bank_event",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gacha_message_direction": {
+          "name": "gacha_message_direction",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gacha_message_dict_key": {
+          "name": "gacha_message_dict_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "gacha_particle_pattern": {
+          "name": "gacha_particle_pattern",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "background_image_path": {
+          "name": "background_image_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "disable_unlock_item": {
+          "name": "disable_unlock_item",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "potential_point": {
+          "name": "potential_point",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "boost_gauge_trigger": {
+          "name": "boost_gauge_trigger",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "m_boost_gauge_ability_group_id": {
+          "name": "m_boost_gauge_ability_group_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "character_full_name": {
+      "name": "character_full_name",
+      "schema": "",
+      "columns": {
+        "dict_key": {
+          "name": "dict_key",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "content_ja": {
+          "name": "content_ja",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_en": {
+          "name": "content_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_fr": {
+          "name": "content_fr",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_th": {
+          "name": "content_th",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_ko": {
+          "name": "content_ko",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_sc": {
+          "name": "content_sc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_tc": {
+          "name": "content_tc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "character_unique": {
+      "name": "character_unique",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "character_ids": {
+          "name": "character_ids",
+          "type": "integer[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rarities": {
+          "name": "rarities",
+          "type": "integer[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rarities_resurrect": {
+          "name": "rarities_resurrect",
+          "type": "integer[]",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "character_unique_character_ids_unique": {
+          "name": "character_unique_character_ids_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "character_ids"
+          ]
+        }
+      }
+    },
+    "character_variation": {
+      "name": "character_variation",
+      "schema": "",
+      "columns": {
+        "dict_key": {
+          "name": "dict_key",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "content_ja": {
+          "name": "content_ja",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_en": {
+          "name": "content_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_fr": {
+          "name": "content_fr",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_th": {
+          "name": "content_th",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_ko": {
+          "name": "content_ko",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_sc": {
+          "name": "content_sc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content_tc": {
+          "name": "content_tc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

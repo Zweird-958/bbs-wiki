@@ -1,0 +1,12 @@
+{
+  "plugins": ["react", "react-hooks"],
+  "extends": ["next", "plugin:react/recommended", "next/core-web-vitals"],
+  "ignorePatterns": ["node_modules", ".next"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  }
+}

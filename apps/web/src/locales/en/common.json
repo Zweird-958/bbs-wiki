@@ -1,0 +1,11 @@
+{
+  "homePage": "Home Page",
+  "characters": "Characters",
+  "system": "System",
+  "dark": "Dark",
+  "light": "Light",
+  "rarity": {
+    "single": "Rarity: ",
+    "many": "Rarities: "
+  }
+}
