@@ -9,12 +9,9 @@ on:
 
 jobs:
   lint:
-    name: Run linters
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4.0.0
@@ -24,12 +21,24 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
+      - name: Typecheck
+        run: npm run lint && npm run lint -ws --if-present
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4.0.0
         with:
-          eslint: true
-          prettier: true
-          # Enable your linters here
+          node-version: 18
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run format
 
   typecheck:
     runs-on: ubuntu-latest
