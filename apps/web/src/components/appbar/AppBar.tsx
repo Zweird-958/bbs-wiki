@@ -23,8 +23,6 @@ const AppBar = async () => {
     },
   ]
 
-  console.log("language", language)
-
   return (
     <Navbar maxWidth="lg">
       <NavbarMenuToggle aria-label="menu" className="sm:hidden" />
