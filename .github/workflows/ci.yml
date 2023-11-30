@@ -9,10 +9,21 @@ on:
 
 jobs:
   lint:
+    name: Run linters
     runs-on: ubuntu-latest
+
     steps:
-      - name: Lint Action
-        uses: wearerequired/lint-action@v2.3.0
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      # Install your linters here
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true
+          # Enable your linters here
 
   format:
     runs-on: ubuntu-latest
