@@ -32,16 +32,9 @@ jobs:
           prettier: true
           # Enable your linters here
 
-  format:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Format
-        run: npm run format
-
   typecheck:
     runs-on: ubuntu-latest
+    needs: lint
     steps:
       - uses: actions/checkout@v4
 
