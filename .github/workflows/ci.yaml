@@ -8,6 +8,14 @@ on:
   merge_group:
 
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install
+        run: npm i
+
   lint:
     runs-on: ubuntu-latest
     steps:
