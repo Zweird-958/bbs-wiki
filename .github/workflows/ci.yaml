@@ -16,6 +16,9 @@ jobs:
       - name: Install
         run: npm i
 
+      - name: Install ESLint globally
+        run: npm install -g eslint
+
   lint:
     needs: install
     runs-on: ubuntu-latest
