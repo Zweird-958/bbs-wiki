@@ -2,7 +2,6 @@
 
 import { Pagination, Spinner } from "@nextui-org/react"
 import { parseAsInteger, useQueryState } from "next-usequerystate"
-import { useCallback } from "react"
 
 import CharacterCard from "@/components/character/CharacterCard"
 import { api } from "@/utils/api"
@@ -15,12 +14,9 @@ const CharactersList = () => {
       page,
     })
 
-  const handlePageChange = useCallback(
-    async (newPage: number) => {
-      await setPage(newPage)
-    },
-    [setPage],
-  )
+  const handlePageChange = async (newPage: number) => {
+    await setPage(newPage)
+  }
 
   if (isLoading) {
     return (
@@ -48,7 +44,7 @@ const CharactersList = () => {
             item: "sm:w-12 sm:h-12 h-10 w-10",
             cursor: "sm:w-12 sm:h-12 h-10 w-10",
           }}
-          onChange={void handlePageChange}
+          onChange={handlePageChange}
         />
       )}
     </div>
