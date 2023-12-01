@@ -7,6 +7,20 @@ import { pageLimitValidator, pageValidator, z } from "@bbs/validators"
 import env from "../../env"
 import { createTRPCRouter, publicProcedure } from "../trpc"
 
+type Character = {
+  characters: {
+    characterElement: number
+    thumb: string
+    id: string
+    name: string | null
+    variation: string | null | undefined
+    rarities: number[]
+    raritiesResurrect: number[] | null
+  }[]
+  count: number
+  numberOfPages: number
+}
+
 export const characterRouter = createTRPCRouter({
   all: publicProcedure
     .input(
@@ -15,12 +29,17 @@ export const characterRouter = createTRPCRouter({
         pageLimit: pageLimitValidator,
       }),
     )
-    .query(async ({ ctx: { db }, input }) => {
-      const { page, pageLimit } = input
+    .query(async ({ ctx: { db, redis }, input: { page, pageLimit } }) => {
       const charactersUnique = await db.query.characterUnique.findMany()
       const characterIds = charactersUnique.map(
         ({ characterIds }) => characterIds[0]!,
       )
+      const cacheKey = config.cacheKeys.allCharacters(pageLimit, page)
+      const cache = await redis.get(cacheKey)
+
+      if (cache) {
+        return JSON.parse(cache) as Character
+      }
 
       const characters = await db.query.character.findMany({
         columns: {
@@ -70,11 +89,14 @@ export const characterRouter = createTRPCRouter({
 
       const count = charactersUnique.length
       const numberOfPages = Math.ceil(count / config.pageLimit)
-
-      return {
+      const result = {
         characters: charactersFormatted,
         count,
         numberOfPages,
       }
+
+      await redis.set(cacheKey, JSON.stringify(result))
+
+      return result
     }),
 })

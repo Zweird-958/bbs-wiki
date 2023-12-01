@@ -1,8 +1,6 @@
 import getServerLanguage from "@/utils/getServerLanguage"
 import getTranslations from "@/utils/language/getTranslations"
 
-export const runtime = "edge"
-
 const HomePage = async () => {
   const language = getServerLanguage()
   const { common } = await getTranslations(language)

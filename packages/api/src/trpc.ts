@@ -10,10 +10,16 @@ import { db } from "@bbs/db"
 import { ZodError } from "@bbs/validators"
 import { initTRPC } from "@trpc/server"
 import superjson from "superjson"
+import { redis } from "../redis"
 
-const createInnerTRPCContext = () => {
+const createInnerTRPCContext = async () => {
+  if (!redis.isReady) {
+    await redis.connect()
+  }
+
   return {
     db,
+    redis,
   }
 }
 
