@@ -6,4 +6,10 @@ export type Character = {
   variation: string | null | undefined
   rarities: number[]
   raritiesResurrect: number[] | null
+  background: string
 }
+
+export type CharacterIcon = Pick<
+  Character,
+  "id" | "element" | "thumb" | "background"
+>

@@ -3,9 +3,9 @@ import { character } from "@bbs/db/schema/character"
 
 import config from "../../config"
 
+import type { Character } from "@bbs/types/Character"
 import { pageLimitValidator, pageValidator, z } from "@bbs/validators"
 import env from "../../env"
-import { Character } from "../../types/Character"
 import { createTRPCRouter, publicProcedure } from "../trpc"
 
 type AllResult = {
@@ -46,11 +46,7 @@ export const characterRouter = createTRPCRouter({
               dictKey: false,
             },
           },
-          variation: {
-            columns: {
-              dictKey: false,
-            },
-          },
+          variation: true,
         },
         where: inArray(character.id, characterIds),
         orderBy: [desc(character.startDate), desc(character.id)],
@@ -75,14 +71,18 @@ export const characterRouter = createTRPCRouter({
             throw new Error("Character not found")
           }
 
+          const rarities = uniqueCharacter.rarities
+          const maxRarity = [...rarities].sort((a, b) => b - a)[0]
+
           return {
             thumb: `${env.imagesUrl}/characters/${resource2dId}/thumb.pb`,
             id: uniqueCharacter.id,
             name: fullName.contentFr,
             variation: variation?.contentFr,
-            rarities: uniqueCharacter.rarities,
+            rarities,
             raritiesResurrect: uniqueCharacter.raritiesResurrect,
             element: `${env.imagesUrl}/elements/${characterElement}.pb`,
+            background: `${env.imagesUrl}/thumbnails/characters/${maxRarity}.pb`,
             ...character,
           }
         },
