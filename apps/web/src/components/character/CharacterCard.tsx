@@ -1,24 +1,23 @@
 import { Card, CardBody, Image } from "@nextui-org/react"
 
 import { useLanguage } from "@/hooks/useLanguage"
+import { Character } from "@bbs/api/types/Character"
 
 type Props = {
   character: Character
 }
 
-type Character = {
-  characterElement: number
-  thumb: string
-  id: string
-  name: string | null
-  variation: string | null | undefined
-  rarities: number[]
-  raritiesResurrect: number[] | null
-}
-
 const CharacterCard = (props: Props) => {
   const {
-    character: { id, name, thumb, variation, rarities, raritiesResurrect },
+    character: {
+      id,
+      name,
+      thumb,
+      element,
+      variation,
+      rarities,
+      raritiesResurrect,
+    },
   } = props
   const {
     translations: {
@@ -31,13 +30,16 @@ const CharacterCard = (props: Props) => {
   return (
     <Card className="bg-content2 xs:w-96 w-full rounded-lg" shadow="sm">
       <CardBody className="flex flex-row items-center gap-6 px-4 py-2">
-        <div className="h-32 basis-32 ">
+        <div className="h-32 w-32 relative">
           <Image
             isZoomed
-            alt={name ?? id}
+            alt={`character-${id}`}
             className="object-cover"
             src={thumb}
           />
+          <div className="w-8 h-8 absolute z-10 left-0 bottom-0">
+            <Image alt={`element-${id}`} src={element} radius="none" />
+          </div>
         </div>
 
         <div className="flex  basis-48 flex-col">

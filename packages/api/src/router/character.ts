@@ -5,18 +5,11 @@ import config from "../../config"
 
 import { pageLimitValidator, pageValidator, z } from "@bbs/validators"
 import env from "../../env"
+import { Character } from "../../types/Character"
 import { createTRPCRouter, publicProcedure } from "../trpc"
 
-type Character = {
-  characters: {
-    characterElement: number
-    thumb: string
-    id: string
-    name: string | null
-    variation: string | null | undefined
-    rarities: number[]
-    raritiesResurrect: number[] | null
-  }[]
+type AllResult = {
+  characters: Character[]
   count: number
   numberOfPages: number
 }
@@ -38,7 +31,7 @@ export const characterRouter = createTRPCRouter({
       const cache = await redis.get(cacheKey)
 
       if (cache) {
-        return JSON.parse(cache) as Character
+        return JSON.parse(cache) as AllResult
       }
 
       const characters = await db.query.character.findMany({
@@ -66,7 +59,14 @@ export const characterRouter = createTRPCRouter({
       })
 
       const charactersFormatted = characters.map(
-        ({ resource2dId, id, fullName, variation, ...character }) => {
+        ({
+          resource2dId,
+          id,
+          fullName,
+          variation,
+          characterElement,
+          ...character
+        }) => {
           const uniqueCharacter = charactersUnique.find(({ characterIds }) =>
             characterIds.includes(id),
           )
@@ -82,6 +82,7 @@ export const characterRouter = createTRPCRouter({
             variation: variation?.contentFr,
             rarities: uniqueCharacter.rarities,
             raritiesResurrect: uniqueCharacter.raritiesResurrect,
+            element: `${env.imagesUrl}/elements/${characterElement}.pb`,
             ...character,
           }
         },
