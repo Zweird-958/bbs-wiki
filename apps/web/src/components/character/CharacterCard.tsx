@@ -1,6 +1,7 @@
 import { Card, CardBody } from "@nextui-org/react"
 
 import CharacterIcon from "@/components/character/CharacterIcon"
+import CharacterRarities from "@/components/character/CharacterRarities"
 import { useLanguage } from "@/hooks/useLanguage"
 import type { Character } from "@bbs/types/Character"
 
@@ -44,11 +45,19 @@ const CharacterCard = (props: Props) => {
             <div className="flex flex-col gap-2">
               <h3 className="text-foreground/90 font-semibold">{name}</h3>
               <p className="text-foreground/80 text-sm">{variation}</p>
-              <p className="text-foreground/80 text-sm">
-                {isManyRarities ? rarity.many : rarity.single}
-                {rarities.join(", ")}
-                {raritiesResurrect && `, ${raritiesResurrect.join(", ")}`}
-              </p>
+              <div className="flex gap-1 items-center">
+                <p className="text-foreground/80 text-sm ">
+                  {isManyRarities ? rarity.many : rarity.single}
+                </p>
+                <CharacterRarities rarities={rarities} id={id} />
+                {raritiesResurrect && (
+                  <CharacterRarities
+                    rarities={raritiesResurrect}
+                    id={id}
+                    isResurrect
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
