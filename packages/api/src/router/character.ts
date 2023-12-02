@@ -46,7 +46,11 @@ export const characterRouter = createTRPCRouter({
               dictKey: false,
             },
           },
-          variation: true,
+          variation: {
+            columns: {
+              dictKey: false,
+            },
+          },
         },
         where: inArray(character.id, characterIds),
         orderBy: [desc(character.startDate), desc(character.id)],
