@@ -42,7 +42,7 @@ const LanguageDropdown = () => {
       </NavbarItem>
       <DropdownMenu
         aria-label="themes-choices"
-        onAction={void handleSelectLanguage}
+        onAction={handleSelectLanguage}
         selectedKeys={selectedKeys}
         selectionMode="single"
       >
