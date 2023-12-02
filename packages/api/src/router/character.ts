@@ -75,14 +75,14 @@ export const characterRouter = createTRPCRouter({
           const maxRarity = [...rarities].sort((a, b) => b - a)[0]
 
           return {
-            thumb: `${env.imagesUrl}/characters/${resource2dId}/thumb.pb`,
+            thumb: `${env.imagesUrl}/characters/${resource2dId}/thumb.png`,
             id: uniqueCharacter.id,
             name: fullName.contentFr,
             variation: variation?.contentFr,
             rarities,
             raritiesResurrect: uniqueCharacter.raritiesResurrect,
-            element: `${env.imagesUrl}/elements/${characterElement}.pb`,
-            background: `${env.imagesUrl}/thumbnails/characters/${maxRarity}.pb`,
+            element: `${env.imagesUrl}/elements/${characterElement}.png`,
+            background: `${env.imagesUrl}/thumbnails/characters/${maxRarity}.png`,
             ...character,
           }
         },
