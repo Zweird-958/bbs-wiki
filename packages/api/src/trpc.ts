@@ -13,8 +13,13 @@ import superjson from "superjson"
 import { redis } from "../redis"
 
 const createInnerTRPCContext = async () => {
-  if (!redis.isReady) {
-    await redis.connect()
+  try {
+    if (!redis.isReady) {
+      await redis.connect()
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error)
   }
 
   return {
