@@ -1,5 +1,6 @@
 import { create } from "zustand"
 
+import character from "@/locales/fr/character.json"
 import common from "@/locales/fr/common.json"
 import type { AvailableLocales, Translations } from "@/types/Locale"
 import config from "@/utils/config"
@@ -14,7 +15,8 @@ interface LanguageStore {
 }
 
 const defaultTranslation = {
-  common: common,
+  common,
+  character,
 }
 
 export const useLanguageStore = create<LanguageStore>((set) => ({

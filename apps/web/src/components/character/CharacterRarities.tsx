@@ -12,7 +12,7 @@ const CharacterRarities = (props: Props) => {
   return (
     <div className="flex gap-1">
       {rarities.map((rarity) => (
-        <div key={`${id}-${rarity}`} className="w-6 h-6 flex items-center">
+        <div key={`${id}-${rarity}`} className="flex h-6 w-6 items-center">
           <Image
             src={`${env.imagesUrl}/rarities/${
               isResurrect ? "resurrect" : "base"

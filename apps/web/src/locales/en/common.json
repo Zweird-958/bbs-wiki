@@ -7,5 +7,9 @@
   "rarity": {
     "single": "Rarity: ",
     "many": "Rarities: "
+  },
+  "none": {
+    "male": "None",
+    "female": "None"
   }
 }

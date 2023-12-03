@@ -90,6 +90,10 @@ export const character = pgTable("character", {
 })
 
 export const characterRelations = relations(character, ({ one }) => ({
+  name: one(characterName, {
+    fields: [character.name],
+    references: [characterName.dictKey],
+  }),
   fullName: one(characterFullName, {
     fields: [character.fullName],
     references: [characterFullName.dictKey],
@@ -98,17 +102,33 @@ export const characterRelations = relations(character, ({ one }) => ({
     fields: [character.variation],
     references: [characterVariation.dictKey],
   }),
+  exIntroductionName: one(characterSpecialName, {
+    fields: [character.exIntroductionName],
+    references: [characterSpecialName.dictKey],
+  }),
+  exIntroductionDescription: one(characterSpecialDescription, {
+    fields: [character.exIntroductionDescription],
+    references: [characterSpecialDescription.dictKey],
+  }),
 }))
 
 export const characterFullName = pgTable(
   "character_full_name",
   dictionarySchema,
 )
-
 export const characterVariation = pgTable(
   "character_variation",
   dictionarySchema,
 )
+export const characterSpecialName = pgTable(
+  "character_special_name",
+  dictionarySchema,
+)
+export const characterSpecialDescription = pgTable(
+  "character_special_description",
+  dictionarySchema,
+)
+export const characterName = pgTable("character_name", dictionarySchema)
 
 export const characterUnique = pgTable("character_unique", {
   id: uuid("id").primaryKey().defaultRandom(),

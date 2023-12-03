@@ -1,9 +1,10 @@
 "use client"
 
-import { Pagination, Spinner } from "@nextui-org/react"
+import { Pagination } from "@nextui-org/react"
 import { parseAsInteger, useQueryState } from "next-usequerystate"
 
 import CharacterCard from "@/components/character/CharacterCard"
+import Loader from "@/components/ui/Loader"
 import { api } from "@/utils/api"
 
 const CharactersList = () => {
@@ -19,11 +20,7 @@ const CharactersList = () => {
   }
 
   if (isLoading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Spinner size="lg" />
-      </div>
-    )
+    return <Loader />
   }
 
   return (

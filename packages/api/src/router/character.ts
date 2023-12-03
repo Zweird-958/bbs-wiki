@@ -1,12 +1,18 @@
-import { desc, inArray } from "@bbs/db"
-import { character } from "@bbs/db/schema/character"
+import { desc, eq, inArray } from "@bbs/db"
+import { character, characterUnique } from "@bbs/db/schema/character"
 
 import config from "../../config"
 
 import type { Character } from "@bbs/types/Character"
-import { pageLimitValidator, pageValidator, z } from "@bbs/validators"
-import env from "../../env"
+import {
+  idValidator,
+  pageLimitValidator,
+  pageValidator,
+  z,
+} from "@bbs/validators"
+import { TRPCError } from "@trpc/server"
 import { createTRPCRouter, publicProcedure } from "../trpc"
+import formatCharacter from "../utils/formatCharacter"
 
 type AllResult = {
   characters: Character[]
@@ -41,16 +47,8 @@ export const characterRouter = createTRPCRouter({
           characterElement: true,
         },
         with: {
-          fullName: {
-            columns: {
-              dictKey: false,
-            },
-          },
-          variation: {
-            columns: {
-              dictKey: false,
-            },
-          },
+          fullName: true,
+          variation: true,
         },
         where: inArray(character.id, characterIds),
         orderBy: [desc(character.startDate), desc(character.id)],
@@ -58,39 +56,17 @@ export const characterRouter = createTRPCRouter({
         limit: pageLimit,
       })
 
-      const charactersFormatted = characters.map(
-        ({
-          resource2dId,
-          id,
-          fullName,
-          variation,
-          characterElement,
-          ...character
-        }) => {
-          const uniqueCharacter = charactersUnique.find(({ characterIds }) =>
-            characterIds.includes(id),
-          )
+      const charactersFormatted = characters.map((char) => {
+        const uniqueCharacter = charactersUnique.find(({ characterIds }) =>
+          characterIds.includes(char.id),
+        )
 
-          if (!uniqueCharacter) {
-            throw new Error("Character not found")
-          }
+        if (!uniqueCharacter) {
+          throw new Error("Character not found")
+        }
 
-          const rarities = uniqueCharacter.rarities
-          const maxRarity = [...rarities].sort((a, b) => b - a)[0]
-
-          return {
-            thumb: `${env.imagesUrl}/characters/${resource2dId}/thumb.png`,
-            id: uniqueCharacter.id,
-            name: fullName.contentFr,
-            variation: variation?.contentFr,
-            rarities,
-            raritiesResurrect: uniqueCharacter.raritiesResurrect,
-            element: `${env.imagesUrl}/elements/${characterElement}.png`,
-            background: `${env.imagesUrl}/thumbnails/characters/${maxRarity}.png`,
-            ...character,
-          }
-        },
-      )
+        return formatCharacter(uniqueCharacter, char)
+      })
 
       const count = charactersUnique.length
       const numberOfPages = Math.ceil(count / config.pageLimit)
@@ -103,5 +79,54 @@ export const characterRouter = createTRPCRouter({
       await redis.set(cacheKey, JSON.stringify(result))
 
       return result
+    }),
+  one: publicProcedure
+    .input(
+      z.object({
+        id: idValidator,
+      }),
+    )
+    .query(async ({ ctx: { db }, input: { id } }) => {
+      const currentCharacterUnique = await db.query.characterUnique.findFirst({
+        where: eq(characterUnique.id, id),
+      })
+
+      if (!currentCharacterUnique) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Character not found",
+        })
+      }
+
+      const currentCharacter = await db.query.character.findFirst({
+        columns: {
+          id: true,
+          resource2dId: true,
+          characterElement: true,
+        },
+        with: {
+          name: true,
+          fullName: true,
+          variation: true,
+          exIntroductionName: true,
+          exIntroductionDescription: true,
+        },
+        where: eq(character.id, currentCharacterUnique.characterIds[0]),
+      })
+
+      if (!currentCharacter) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Character not found",
+        })
+      }
+
+      return {
+        ...formatCharacter(currentCharacterUnique, currentCharacter),
+        name: currentCharacter.name?.contentFr,
+        exIntroductionName: currentCharacter.exIntroductionName?.contentFr,
+        exIntroductionDescription:
+          currentCharacter.exIntroductionDescription?.contentFr,
+      }
     }),
 })

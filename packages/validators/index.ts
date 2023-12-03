@@ -9,5 +9,6 @@ export const pageLimitValidator = z
   .default(config.pageLimit)
   .catch(config.pageLimit)
 export const imagesUrlValidator = z.string()
+export const idValidator = z.string()
 
 export * from "zod"
