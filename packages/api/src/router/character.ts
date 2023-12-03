@@ -110,6 +110,11 @@ export const characterRouter = createTRPCRouter({
           variation: true,
           exIntroductionName: true,
           exIntroductionDescription: true,
+          passiveAbilities: {
+            with: {
+              description: true,
+            },
+          },
         },
         where: eq(character.id, currentCharacterUnique.characterIds[0]),
       })
@@ -127,6 +132,14 @@ export const characterRouter = createTRPCRouter({
         exIntroductionName: currentCharacter.exIntroductionName?.contentFr,
         exIntroductionDescription:
           currentCharacter.exIntroductionDescription?.contentFr,
+        passiveAbilities: currentCharacter.passiveAbilities.map(
+          ({ viewParameter, format, description, id }) => ({
+            id,
+            value: viewParameter,
+            format,
+            name: description?.contentFr,
+          }),
+        ),
       }
     }),
 })

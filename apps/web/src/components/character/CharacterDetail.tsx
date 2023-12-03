@@ -2,6 +2,7 @@
 
 import CharacterIcon from "@/components/character/CharacterIcon"
 import CharacterInfo from "@/components/character/CharacterInfo"
+import CharacterPassiveAbilities from "@/components/character/CharacterPassiveAbilities"
 import CharacterSpecial from "@/components/character/CharacterSpecial"
 import CenterDiv from "@/components/ui/CenterDiv"
 import Loader from "@/components/ui/Loader"
@@ -42,6 +43,7 @@ const CharacterDetail = (props: Props) => {
     element,
     id,
     thumb,
+    passiveAbilities,
   } = character
 
   return (
@@ -61,6 +63,7 @@ const CharacterDetail = (props: Props) => {
         description={exIntroductionDescription}
       />
       <CharacterInfo fullName={fullName} name={name} variation={variation} />
+      <CharacterPassiveAbilities passiveAbilities={passiveAbilities} />
     </div>
   )
 }

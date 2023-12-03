@@ -15,6 +15,12 @@ export type CharacterDetails = Character & {
   name: string | null
   exIntroductionName: string | null | undefined
   exIntroductionDescription: string | null | undefined
+  passiveAbilities: {
+    id: number
+    value: number | null
+    format: "plus" | "none" | "interval" | "percent" | null
+    name: string | null | undefined
+  }[]
 }
 
 export type CharacterIcon = Pick<

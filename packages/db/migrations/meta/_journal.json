@@ -22,6 +22,27 @@
       "when": 1701563462332,
       "tag": "0002_fixed_gargoyle",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1701604205844,
+      "tag": "0003_furry_zemo",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1701609662518,
+      "tag": "0004_groovy_ironclad",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1701610136796,
+      "tag": "0005_tricky_edwin_jarvis",
+      "breakpoints": true
     }
   ]
 }

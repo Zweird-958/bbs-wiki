@@ -1,7 +1,21 @@
 import { relations, sql } from "drizzle-orm"
-import { integer, text, timestamp, uuid } from "drizzle-orm/pg-core"
+import {
+  integer,
+  pgEnum,
+  real,
+  text,
+  timestamp,
+  uuid,
+} from "drizzle-orm/pg-core"
 
 import { dictionarySchema, pgTable } from "./_table"
+
+export const formatEnum = pgEnum("format", [
+  "plus",
+  "none",
+  "interval",
+  "percent",
+])
 
 export const character = pgTable("character", {
   id: integer("id").primaryKey(),
@@ -88,8 +102,7 @@ export const character = pgTable("character", {
   boostGaugeTrigger: text("boost_gauge_trigger"),
   mBoostGaugeAbilityGroupId: integer("m_boost_gauge_ability_group_id"),
 })
-
-export const characterRelations = relations(character, ({ one }) => ({
+export const characterRelations = relations(character, ({ one, many }) => ({
   name: one(characterName, {
     fields: [character.name],
     references: [characterName.dictKey],
@@ -110,7 +123,48 @@ export const characterRelations = relations(character, ({ one }) => ({
     fields: [character.exIntroductionDescription],
     references: [characterSpecialDescription.dictKey],
   }),
+  passiveAbilities: many(characterPassiveAbility),
 }))
+export const characterUnique = pgTable("character_unique", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  characterIds: integer("character_ids").array().unique().notNull(),
+  rarities: integer("rarities").array().notNull(),
+  raritiesResurrect: integer("rarities_resurrect").array(),
+})
+export const characterPassiveAbility = pgTable("character_passive_ability", {
+  id: integer("id").primaryKey(),
+  groupId: integer("group_id"),
+  priority: integer("priority"),
+  sortOrderPassiveAbilityFilter: integer("sort_order_passive_ability_filter"),
+  passiveAbilityFilterReleaseDate: timestamp(
+    "passive_ability_filter_release_date",
+  ),
+  type: text("type"),
+  viewParameter: real("view_parameter"),
+  format: formatEnum("format"),
+  description: text("description"),
+  parameterName1: text("parameter_name1"),
+  parameter1: real("parameter1"),
+  parameterName2: text("parameter_name2"),
+  parameter2: real("parameter2"),
+  parameterName3: text("parameter_name3"),
+  parameter3: real("parameter3"),
+})
+export const characterPassiveAbilityRelations = relations(
+  characterPassiveAbility,
+  ({ one }) => ({
+    groupId: one(character, {
+      fields: [characterPassiveAbility.groupId],
+      references: [character.mPassiveAbilityGroupId],
+    }),
+    description: one(characterPassiveAbilityDescription, {
+      fields: [characterPassiveAbility.description],
+      references: [characterPassiveAbilityDescription.dictKey],
+    }),
+  }),
+)
+
+// Dictionary
 
 export const characterFullName = pgTable(
   "character_full_name",
@@ -129,10 +183,7 @@ export const characterSpecialDescription = pgTable(
   dictionarySchema,
 )
 export const characterName = pgTable("character_name", dictionarySchema)
-
-export const characterUnique = pgTable("character_unique", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  characterIds: integer("character_ids").array().unique().notNull(),
-  rarities: integer("rarities").array().notNull(),
-  raritiesResurrect: integer("rarities_resurrect").array(),
-})
+export const characterPassiveAbilityDescription = pgTable(
+  "character_passive_ability_description",
+  dictionarySchema,
+)
