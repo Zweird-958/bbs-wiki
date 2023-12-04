@@ -15,6 +15,7 @@
     "db:push": "npm run push -w 'packages/db'",
     "db:generate": "npm run generate -w 'packages/db'",
     "db:drop": "npm run drop -w 'packages/db'",
+    "db:sync": "npm run db:generate && npm run db:push",
     "web": "npm run dev -w 'apps/web'"
   },
   "keywords": [],
