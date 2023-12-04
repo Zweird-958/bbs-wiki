@@ -69,7 +69,7 @@ export const character = pgTable("character", {
   ).notNull(),
   characterAttackGroupIdEx: integer("character_attack_group_id_ex").notNull(),
   exAtkResource3dId: text("ex_atk_resource_3d_id"),
-  exCutin_resource3dId: text("ex_cutin_resource_3d_id"),
+  exCutinResource3dId: text("ex_cutin_resource_3d_id"),
   characterShiftId: integer("character_shift_id"),
   characterBuddyId: integer("character_buddy_id"),
   killerType1: text("killer_type1"),

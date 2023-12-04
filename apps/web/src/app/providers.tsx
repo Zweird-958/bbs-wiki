@@ -12,7 +12,8 @@ import { api } from "@/utils/api"
 const getBaseUrl = () => {
   if (typeof window !== "undefined") {
     return ""
-  } // browser should use relative url
+  }
+  // browser should use relative url
 
   return "http://localhost:3001"
   // if (env.VERCEL_URL) {

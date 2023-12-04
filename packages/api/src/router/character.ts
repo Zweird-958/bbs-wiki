@@ -31,7 +31,7 @@ export const characterRouter = createTRPCRouter({
     .query(async ({ ctx: { db, redis }, input: { page, pageLimit } }) => {
       const charactersUnique = await db.query.characterUnique.findMany()
       const characterIds = charactersUnique.map(
-        ({ characterIds }) => characterIds[0]!,
+        ({ characterIds: ids }) => ids[0]!,
       )
       const cacheKey = config.cacheKeys.allCharacters(pageLimit, page)
       const cache = await redis.get(cacheKey)
@@ -57,8 +57,8 @@ export const characterRouter = createTRPCRouter({
       })
 
       const charactersFormatted = characters.map((char) => {
-        const uniqueCharacter = charactersUnique.find(({ characterIds }) =>
-          characterIds.includes(char.id),
+        const uniqueCharacter = charactersUnique.find(({ characterIds: ids }) =>
+          ids.includes(char.id),
         )
 
         if (!uniqueCharacter) {
@@ -86,9 +86,9 @@ export const characterRouter = createTRPCRouter({
         id: idValidator,
       }),
     )
-    .query(async ({ ctx: { db }, input: { id } }) => {
+    .query(async ({ ctx: { db }, input: { id: characterId } }) => {
       const currentCharacterUnique = await db.query.characterUnique.findFirst({
-        where: eq(characterUnique.id, id),
+        where: eq(characterUnique.id, characterId),
       })
 
       if (!currentCharacterUnique) {

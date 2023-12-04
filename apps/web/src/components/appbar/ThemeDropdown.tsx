@@ -1,7 +1,5 @@
 "use client"
 
-import type { Key } from "react"
-import { useCallback, useState } from "react"
 import { Button } from "@nextui-org/button"
 import { NavbarItem } from "@nextui-org/navbar"
 import {
@@ -12,6 +10,7 @@ import {
 } from "@nextui-org/react"
 import { MoonIcon } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useCallback, useState, type Key } from "react"
 
 import { useLanguage } from "@/hooks/useLanguage"
 
@@ -27,10 +26,10 @@ const ThemeDropdown = () => {
 
   const handleChangeTheme = useCallback(
     (themeKey: Key) => {
-      const theme = themeKey.toString()
+      const themeChosen = themeKey.toString()
 
-      setTheme(theme)
-      setThemeSelected(new Set([theme]))
+      setTheme(themeChosen)
+      setThemeSelected(new Set([themeChosen]))
     },
     [setTheme],
   )

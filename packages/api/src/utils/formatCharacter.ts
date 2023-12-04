@@ -11,8 +11,8 @@ const formatCharacter = (
 ): Character => {
   const { resource2dId, fullName, variation, characterElement } = character
 
-  const rarities = uniqueCharacter.rarities
-  const maxRarity = [...rarities].sort((a, b) => b - a)[0]
+  const { rarities } = uniqueCharacter
+  const [maxRarity] = [...rarities].sort((a, b) => b - a)
   const variationFormatted = variation?.contentFr
 
   return {

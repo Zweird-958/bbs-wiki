@@ -1,6 +1,5 @@
 import acceptLanguage from "accept-language"
-import type { NextRequest } from "next/server"
-import { NextResponse } from "next/server"
+import { NextResponse, type NextRequest } from "next/server"
 
 import { languageSchema } from "@/schemas"
 import languageConfig from "@/utils/config"
