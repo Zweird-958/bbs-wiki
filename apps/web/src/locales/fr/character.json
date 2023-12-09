@@ -3,5 +3,7 @@
   "variation": "Variante",
   "name": "Nom",
   "fullName": "Nom complet",
-  "passiveAbilities": "Compétences innées"
+  "passiveAbilities": "Compétences innées",
+  "abilities": "Compétences",
+  "soulTrait": "Soul trait"
 }

@@ -1,8 +1,9 @@
 "use client"
 
+import CharacterAbilities from "@/components/character/CharacterAbilities"
 import CharacterIcon from "@/components/character/CharacterIcon"
 import CharacterInfo from "@/components/character/CharacterInfo"
-import CharacterPassiveAbilities from "@/components/character/CharacterPassiveAbilities"
+import CharacterSoulTrait from "@/components/character/CharacterSoulTrait"
 import CharacterSpecial from "@/components/character/CharacterSpecial"
 import CenterDiv from "@/components/ui/CenterDiv"
 import Loader from "@/components/ui/Loader"
@@ -44,6 +45,8 @@ const CharacterDetail = (props: Props) => {
     id,
     thumb,
     passiveAbilities,
+    abilities,
+    linkSkills,
   } = character
 
   return (
@@ -63,7 +66,9 @@ const CharacterDetail = (props: Props) => {
         description={exIntroductionDescription}
       />
       <CharacterInfo fullName={fullName} name={name} variation={variation} />
-      <CharacterPassiveAbilities passiveAbilities={passiveAbilities} />
+      <CharacterSoulTrait linkSkills={linkSkills} />
+      <CharacterAbilities abilities={passiveAbilities} isPassive />
+      <CharacterAbilities abilities={abilities} />
     </div>
   )
 }

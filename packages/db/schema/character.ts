@@ -15,6 +15,7 @@ export const formatEnum = pgEnum("format", [
   "none",
   "interval",
   "percent",
+  "plus_sec",
 ])
 
 export const character = pgTable("character", {
@@ -123,6 +124,7 @@ export const characterRelations = relations(character, ({ one, many }) => ({
     fields: [character.exIntroductionDescription],
     references: [characterSpecialDescription.dictKey],
   }),
+  abilities: many(characterAbility),
   passiveAbilities: many(characterPassiveAbility),
 }))
 export const characterUnique = pgTable("character_unique", {
@@ -163,9 +165,99 @@ export const characterPassiveAbilityRelations = relations(
     }),
   }),
 )
+export const characterAbility = pgTable("character_ability", {
+  id: integer("id").primaryKey(),
+  patternId: integer("pattern_id"),
+  nodeId: integer("node_id"),
+  level: integer("level"),
+  type: text("type"),
+  parameter: integer("parameter"),
+  targetQuestTypes: text("target_quest_types"),
+  excludeQuestTypes: text("exclude_quest_types"),
+  type2: text("type2"),
+  parameter2: integer("parameter2"),
+  targetQuestTypes2: text("target_quest_types2"),
+  excludeQuestTypes2: text("exclude_quest_types2"),
+  unlockCharacterLevel: integer("unlock_character_level"),
+  unlockSecondPhase: integer("unlock_second_phase"),
+  consumeMCharacter1Id: integer("consume_m_character1_id"),
+  consumeMCharacter1Amount: integer("consume_m_character1_amount"),
+  consumeMCharacter2Id: integer("consume_m_character2_id"),
+  consumeMCharacter2Amount: integer("consume_m_character2_amount"),
+  consumeMCharacter3Id: integer("consume_m_character3_id"),
+  consumeMCharacter3Amount: integer("consume_m_character3_amount"),
+  consumePieceType: text("consume_piece_type"),
+  consumePieceRank: integer("consume_piece_rank"),
+  smallPiece: integer("small_piece"),
+  middlePiece: integer("middle_piece"),
+  largePiece: integer("large_piece"),
+  consumeCoin: integer("consume_coin"),
+  consumeGoldConst: integer("consume_gold_const"),
+  isLinkSkill: integer("is_link_skill"),
+})
+export const characterAbilityPriority = pgTable("character_ability_priority", {
+  id: integer("id").primaryKey(),
+  priority: integer("priority"),
+  sortOrder: integer("sort_order"),
+  sortOrderLinkSkillFilter: integer("sort_order_link_skill_filter"),
+  sortOrderEvolveSkillType: integer("sort_order_evolve_skill_type"),
+  sortOrderAbilityFilter: integer("sort_order_ability_filter"),
+  abilityFilterReleaseDate: timestamp("ability_filter_release_date"),
+  type: text("type"),
+  description: text("description"),
+  description2: text("description2"),
+  format: formatEnum("format"),
+})
+export const characterAbilityRelations = relations(
+  characterAbility,
+  ({ one }) => ({
+    patternId: one(character, {
+      fields: [characterAbility.patternId],
+      references: [character.mSoulPiecePatternId],
+    }),
+    info: one(characterAbilityPriority, {
+      fields: [characterAbility.type],
+      references: [characterAbilityPriority.type],
+    }),
+    info2: one(characterAbilityPriority, {
+      fields: [characterAbility.type2],
+      references: [characterAbilityPriority.type],
+    }),
+    boost: one(characterAbilityStatus, {
+      fields: [characterAbility.parameter],
+      references: [characterAbilityStatus.groupId],
+    }),
+  }),
+)
+export const characterAbilityPriorityRelations = relations(
+  characterAbilityPriority,
+  ({ one }) => ({
+    description: one(characterAbilityName, {
+      fields: [characterAbilityPriority.description],
+      references: [characterAbilityName.dictKey],
+    }),
+  }),
+)
+export const characterAbilityStatus = pgTable("character_ability_status", {
+  id: integer("id").primaryKey(),
+  groupId: integer("group_id"),
+  priority: integer("priority"),
+  statusUpType: text("status_up_type"),
+  effectAmount: integer("effect_amount"),
+  effectTime: integer("effect_time"),
+  description: text("description"),
+})
+export const characterAbilityStatusRelations = relations(
+  characterAbilityStatus,
+  ({ one }) => ({
+    description: one(characterAbilityName, {
+      fields: [characterAbilityStatus.description],
+      references: [characterAbilityName.dictKey],
+    }),
+  }),
+)
 
 // Dictionary
-
 export const characterFullName = pgTable(
   "character_full_name",
   dictionarySchema,
@@ -185,5 +277,9 @@ export const characterSpecialDescription = pgTable(
 export const characterName = pgTable("character_name", dictionarySchema)
 export const characterPassiveAbilityDescription = pgTable(
   "character_passive_ability_description",
+  dictionarySchema,
+)
+export const characterAbilityName = pgTable(
+  "character_ability_name",
   dictionarySchema,
 )

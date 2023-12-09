@@ -3,5 +3,7 @@
   "variation": "Variation",
   "name": "Name",
   "fullName": "Full name",
-  "passiveAbilities": "Passive abilities"
+  "passiveAbilities": "Passive abilities",
+  "abilities": "Abilities",
+  "soulTrait": "Soul trait"
 }

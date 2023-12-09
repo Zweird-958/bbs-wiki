@@ -12,6 +12,12 @@ import {
 } from "@bbs/validators"
 import { TRPCError } from "@trpc/server"
 import { createTRPCRouter, publicProcedure } from "../trpc"
+import filterAbilities from "../utils/ability/filterAbilities"
+import formatAbilities from "../utils/ability/formatAbilities"
+import getTotalParameter from "../utils/ability/getTotalParameter"
+import mergeTotalParameter from "../utils/ability/mergeTotalParameter"
+import orderAbilities from "../utils/ability/orderAbilities"
+import splitAbilities from "../utils/ability/splitAbilities"
 import formatCharacter from "../utils/formatCharacter"
 
 type AllResult = {
@@ -115,6 +121,25 @@ export const characterRouter = createTRPCRouter({
               description: true,
             },
           },
+          abilities: {
+            with: {
+              info: {
+                with: {
+                  description: true,
+                },
+              },
+              info2: {
+                with: {
+                  description: true,
+                },
+              },
+              boost: {
+                with: {
+                  description: true,
+                },
+              },
+            },
+          },
         },
         where: eq(character.id, currentCharacterUnique.characterIds[0]),
       })
@@ -125,6 +150,28 @@ export const characterRouter = createTRPCRouter({
           message: "Character not found",
         })
       }
+
+      const abilitiesSplited = splitAbilities(currentCharacter.abilities)
+      const abilitiesDuplicate = filterAbilities(abilitiesSplited, true)
+      const abilitiesUnique = filterAbilities(abilitiesSplited)
+      const duplicateOrdered = orderAbilities(abilitiesDuplicate)
+      const duplicatedSoulLinkOrdered = orderAbilities(abilitiesDuplicate, true)
+      const duplicatedTotalParameter = getTotalParameter(duplicateOrdered)
+      const duplicatedSoulTotalParameter = getTotalParameter(
+        duplicatedSoulLinkOrdered,
+      )
+      const abilitiesTotalParameter = mergeTotalParameter([
+        ...duplicatedTotalParameter,
+        ...duplicatedSoulTotalParameter,
+      ])
+      const abilities = await formatAbilities([
+        ...abilitiesTotalParameter,
+        ...abilitiesUnique,
+      ])
+      const soulLinkAbilities = await formatAbilities([
+        ...abilitiesUnique.filter(({ isLinkSkill }) => isLinkSkill),
+        ...duplicatedSoulTotalParameter,
+      ])
 
       return {
         ...formatCharacter(currentCharacterUnique, currentCharacter),
@@ -140,6 +187,8 @@ export const characterRouter = createTRPCRouter({
             name: description?.contentFr,
           }),
         ),
+        abilities,
+        linkSkills: soulLinkAbilities,
       }
     }),
 })

@@ -11,13 +11,13 @@ const formatCharacter = (
 ): Character => {
   const { resource2dId, fullName, variation, characterElement } = character
 
-  const { rarities } = uniqueCharacter
+  const { rarities, id } = uniqueCharacter
   const [maxRarity] = [...rarities].sort((a, b) => b - a)
   const variationFormatted = variation?.contentFr
 
   return {
     thumb: `${env.imagesUrl}/characters/${resource2dId}/thumb.png`,
-    id: uniqueCharacter.id,
+    id,
     fullName: fullName.contentFr,
     variation:
       variationFormatted &&

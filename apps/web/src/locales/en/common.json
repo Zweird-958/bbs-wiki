@@ -11,5 +11,6 @@
   "none": {
     "male": "None",
     "female": "None"
-  }
+  },
+  "second": "sec"
 }

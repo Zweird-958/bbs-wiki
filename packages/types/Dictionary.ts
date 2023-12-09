@@ -8,3 +8,5 @@ export type Dictionary = {
   contentSc: string | null
   contentTc: string | null
 }
+
+export type Description = (Dictionary & string) | null

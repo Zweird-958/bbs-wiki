@@ -1,3 +1,4 @@
+import { AbilityFormatted } from "./Ability"
 import { Dictionary } from "./Dictionary"
 
 export type Character = {
@@ -15,12 +16,12 @@ export type CharacterDetails = Character & {
   name: string | null
   exIntroductionName: string | null | undefined
   exIntroductionDescription: string | null | undefined
-  passiveAbilities: {
-    id: number
-    value: number | null
-    format: "plus" | "none" | "interval" | "percent" | null
-    name: string | null | undefined
-  }[]
+  passiveAbilities: AbilityFormatted[]
+  abilities: AbilityFormatted[]
+  linkSkills: ({
+    soulLinkName: string | null | undefined
+    isLinkSkill: number | null
+  } & AbilityFormatted)[]
 }
 
 export type CharacterIcon = Pick<
