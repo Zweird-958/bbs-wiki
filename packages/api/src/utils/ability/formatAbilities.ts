@@ -1,5 +1,5 @@
 import { db, eq, or } from "@bbs/db"
-import { characterAbilityName } from "@bbs/db/schema/character"
+import { characterAbilityName } from "@bbs/db/schema/dictionary"
 import { AbilityWithRelation } from "@bbs/types/Ability"
 
 const formatAbilities = async (abilities: AbilityWithRelation[]) =>
