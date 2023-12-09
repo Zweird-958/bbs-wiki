@@ -71,6 +71,13 @@
       "when": 1702025723289,
       "tag": "0009_bored_maginty",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1702161446615,
+      "tag": "0010_wealthy_caretaker",
+      "breakpoints": true
     }
   ]
 }

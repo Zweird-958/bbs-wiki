@@ -1,19 +1,15 @@
 import AbilityValue from "@/components/AbilityValue"
-import { useLanguage } from "@/hooks/useLanguage"
 import { CharacterDetails } from "@bbs/types/Character"
 import { Card, CardBody, CardHeader } from "@nextui-org/card"
 import { Divider } from "@nextui-org/divider"
 import { Listbox, ListboxItem } from "@nextui-org/listbox"
 
 type Props = {
-  isPassive?: boolean
+  headerTitle: string
 } & Pick<CharacterDetails, "abilities">
 
 const CharacterPassiveAbilities = (props: Props) => {
-  const { abilities, isPassive } = props
-  const {
-    translations: { character },
-  } = useLanguage()
+  const { abilities, headerTitle } = props
 
   if (abilities.length === 0) {
     return null
@@ -21,9 +17,7 @@ const CharacterPassiveAbilities = (props: Props) => {
 
   return (
     <Card>
-      <CardHeader>
-        {isPassive ? character.passiveAbilities : character.abilities}
-      </CardHeader>
+      <CardHeader>{headerTitle}</CardHeader>
       <Divider />
       <CardBody>
         <Listbox aria-label="Actions" items={abilities}>

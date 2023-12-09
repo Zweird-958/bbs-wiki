@@ -7,6 +7,7 @@ import CharacterSoulTrait from "@/components/character/CharacterSoulTrait"
 import CharacterSpecial from "@/components/character/CharacterSpecial"
 import CenterDiv from "@/components/ui/CenterDiv"
 import Loader from "@/components/ui/Loader"
+import { useLanguage } from "@/hooks/useLanguage"
 import { api } from "@/utils/api"
 import { CharacterUnique } from "@bbs/types/Character"
 import { Card, CardBody } from "@nextui-org/card"
@@ -17,7 +18,6 @@ type Props = {
 
 const CharacterDetail = (props: Props) => {
   const { characterId } = props
-
   const {
     isLoading,
     error,
@@ -25,6 +25,9 @@ const CharacterDetail = (props: Props) => {
   } = api.character.one.useQuery({
     id: characterId,
   })
+  const {
+    translations: { character: characterTranslations },
+  } = useLanguage()
 
   if (isLoading) {
     return <Loader />
@@ -47,6 +50,7 @@ const CharacterDetail = (props: Props) => {
     passiveAbilities,
     abilities,
     linkSkills,
+    gaugeAbilities,
   } = character
 
   return (
@@ -67,8 +71,18 @@ const CharacterDetail = (props: Props) => {
       />
       <CharacterInfo fullName={fullName} name={name} variation={variation} />
       <CharacterSoulTrait linkSkills={linkSkills} />
-      <CharacterAbilities abilities={passiveAbilities} isPassive />
-      <CharacterAbilities abilities={abilities} />
+      <CharacterAbilities
+        abilities={gaugeAbilities}
+        headerTitle={characterTranslations.gaugeEffect}
+      />
+      <CharacterAbilities
+        abilities={passiveAbilities}
+        headerTitle={characterTranslations.passiveAbilities}
+      />
+      <CharacterAbilities
+        abilities={abilities}
+        headerTitle={characterTranslations.abilities}
+      />
     </div>
   )
 }

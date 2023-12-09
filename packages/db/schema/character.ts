@@ -12,6 +12,7 @@ import { pgTable } from "./_table"
 import {
   characterAbilityName,
   characterFullName,
+  characterGaugeAbilityName,
   characterName,
   characterPassiveAbilityDescription,
   characterSpecialDescription,
@@ -135,6 +136,7 @@ export const characterRelations = relations(character, ({ one, many }) => ({
   }),
   abilities: many(characterAbility),
   passiveAbilities: many(characterPassiveAbility),
+  gauge: many(characterGaugeAbility),
 }))
 export const characterUnique = pgTable("character_unique", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -262,6 +264,30 @@ export const characterAbilityStatusRelations = relations(
     description: one(characterAbilityName, {
       fields: [characterAbilityStatus.description],
       references: [characterAbilityName.dictKey],
+    }),
+  }),
+)
+export const characterGaugeAbility = pgTable("character_gauge_ability", {
+  id: integer("id").primaryKey(),
+  groupId: integer("group_id"),
+  priority: integer("priority"),
+  type: text("type"),
+  description: text("description"),
+  parameter: integer("parameter"),
+  format: formatEnum("format"),
+  startDate: timestamp("start_date"),
+  endDate: timestamp("end_date"),
+})
+export const characterGaugeAbilityRelations = relations(
+  characterGaugeAbility,
+  ({ one }) => ({
+    groupId: one(character, {
+      fields: [characterGaugeAbility.groupId],
+      references: [character.mBoostGaugeAbilityGroupId],
+    }),
+    description: one(characterGaugeAbilityName, {
+      fields: [characterGaugeAbility.description],
+      references: [characterGaugeAbilityName.dictKey],
     }),
   }),
 )

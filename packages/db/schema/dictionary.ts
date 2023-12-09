@@ -25,3 +25,7 @@ export const characterAbilityName = pgTable(
   "character_ability_name",
   dictionarySchema,
 )
+export const characterGaugeAbilityName = pgTable(
+  "character_gauge_ability_name",
+  dictionarySchema,
+)

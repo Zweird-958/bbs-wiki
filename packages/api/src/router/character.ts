@@ -140,6 +140,11 @@ export const characterRouter = createTRPCRouter({
               },
             },
           },
+          gauge: {
+            with: {
+              description: true,
+            },
+          },
         },
         where: eq(character.id, currentCharacterUnique.characterIds[0]),
       })
@@ -189,6 +194,14 @@ export const characterRouter = createTRPCRouter({
         ),
         abilities,
         linkSkills: soulLinkAbilities,
+        gaugeAbilities: currentCharacter.gauge.map(
+          ({ description, id, parameter, format }) => ({
+            id,
+            name: description?.contentFr,
+            value: parameter,
+            format,
+          }),
+        ),
       }
     }),
 })
