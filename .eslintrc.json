@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["node_modules", ".env", "packages/db/.env"],
+  "ignorePatterns": ["node_modules", ".env", "packages/db/.env", "build"],
   "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
@@ -40,7 +40,7 @@
       }
     ],
     "class-methods-use-this": ["error", { "enforceForClassFields": true }],
-    "complexity": ["error", 5],
+    "complexity": ["error", 10],
     "consistent-return": "error",
     "curly": ["error", "all"],
     "default-param-last": "error",

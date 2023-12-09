@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es2022",
     "module": "commonjs",
+    "typeRoots": ["node_modules/@types", "./types"],
     "moduleResolution": "node",
     "declaration": true,
     "strict": true,
@@ -11,8 +12,10 @@
     "forceConsistentCasingInFileNames": true,
     "rootDir": "./",
     "outDir": "./build",
-    "composite": true
+    "composite": true,
+    "noErrorTruncation": true
   },
+
   "include": ["./**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "build"]
 }
