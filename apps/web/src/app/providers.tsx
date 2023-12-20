@@ -15,6 +15,9 @@ const getBaseUrl = () => {
     return ""
   }
 
+  // eslint-disable-next-line no-console
+  console.log(env)
+
   if (env.vercelUrl) {
     return env.vercelUrl
   }
