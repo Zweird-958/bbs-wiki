@@ -7,16 +7,13 @@ import { ThemeProvider } from "next-themes"
 import { useState } from "react"
 import superjson from "superjson"
 
-import { api } from "@/utils/api"
 import env from "@/env"
+import { api } from "@/utils/api"
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") {
     return ""
   }
-
-  // eslint-disable-next-line no-console
-  console.log(env)
 
   if (env.vercelUrl) {
     return env.vercelUrl

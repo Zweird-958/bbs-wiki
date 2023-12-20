@@ -35,6 +35,7 @@ export const characterRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx: { db, redis }, input: { page, pageLimit } }) => {
+      console.log("page", page)
       const charactersUnique = await db.query.characterUnique.findMany()
       const characterIds = charactersUnique.map(
         ({ characterIds: ids }) => ids[0]!,
