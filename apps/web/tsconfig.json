@@ -6,13 +6,14 @@
     "moduleResolution": "bundler",
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": "../../",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["apps/web/src/*"]
     }
   },
   "include": [
