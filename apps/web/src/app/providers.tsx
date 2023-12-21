@@ -27,6 +27,7 @@ export function Providers(props: {
   headers?: Headers
 }) {
   const [queryClient] = useState(() => new QueryClient())
+  // eslint-disable-next-line no-console
   console.log(`${getBaseUrl()}/api/trpc`)
 
   const [trpcClient] = useState(() =>
