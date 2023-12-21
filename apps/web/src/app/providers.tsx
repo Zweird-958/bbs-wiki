@@ -16,7 +16,7 @@ const getBaseUrl = () => {
   }
 
   if (env.vercelUrl) {
-    return env.vercelUrl
+    return `https://${env.vercelUrl}`
   }
 
   return `http://localhost:${env.port}`
