@@ -15,11 +15,7 @@ const getBaseUrl = () => {
     return ""
   }
 
-  if (env.vercelUrl) {
-    return `https://${env.vercelUrl}`
-  }
-
-  return `http://localhost:${env.port}`
+  return env.vercelUrl ?? `http://localhost:${env.port}`
 }
 
 export function Providers(props: {
@@ -27,8 +23,6 @@ export function Providers(props: {
   headers?: Headers
 }) {
   const [queryClient] = useState(() => new QueryClient())
-  // eslint-disable-next-line no-console
-  console.log(`${getBaseUrl()}/api/trpc`)
 
   const [trpcClient] = useState(() =>
     api.createClient({
