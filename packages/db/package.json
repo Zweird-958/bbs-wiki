@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "drizzle-kit": "^0.20.7"
+    "drizzle-kit": "^0.20.8"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.6.1",
