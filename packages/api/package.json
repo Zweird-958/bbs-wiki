@@ -14,7 +14,7 @@
     "@bbs/types": "^1.0.0",
     "@trpc/client": "^10.45.0",
     "@trpc/server": "^10.45.0",
-    "dotenv": "^16.4.0",
+    "dotenv": "^16.4.1",
     "redis": "^4.6.12",
     "superjson": "^2.2.1"
   },
